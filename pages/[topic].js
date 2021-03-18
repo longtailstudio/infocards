@@ -37,14 +37,7 @@ export default function Home({infobox}) {
 
 export async function getStaticProps({params}) {
 
-  const res = await fetch(`https://wiki.metad.workers.dev/wiki/${params.topic}`, {
-    headers: {
-        'Host': 'en.wikipedia.org',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15',
-        'accept-language': 'en-us',
-        'referer': 'https://www.wikipedia.org/',
-    }})
+  const res = await fetch(`https://wiki.metad.workers.dev/wiki/${params.topic}`)
   
   const $ = cheerio.load(await res.text())
   const infobox = $('table.infobox').html().replaceAll('href="/wiki/','href="/')
