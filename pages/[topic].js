@@ -37,7 +37,7 @@ export default function Home({infobox}) {
 
 export async function getStaticProps({params}) {
 
-  const res = await fetch(`https://en.wikipedia.org/wiki/Spider-Man`, {
+  const res = await fetch(`https://en.wikipedia.org/wiki/${params.topic}`, {
     headers: {
         'Host': 'en.wikipedia.org',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
