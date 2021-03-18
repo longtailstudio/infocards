@@ -40,7 +40,7 @@ export async function getStaticProps({params}) {
   const res = await fetch(`https://wiki.metad.workers.dev/wiki/${params.topic}`)
   
   const $ = cheerio.load(await res.text())
-  const infobox = $('table.infobox').html().replaceAll('href="/wiki/','href="/')
+  const infobox = $('table.infobox').html()  //.replaceAll('href="/wiki/','href="/')
   console.log(infobox)
 
   return {
