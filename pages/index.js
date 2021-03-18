@@ -68,10 +68,3 @@ export async function getStaticProps() {
     revalidate: 86400
   }
 }
-
-export async function getStaticPaths() {
-  return {
-    paths: [ ],
-    fallback: true
-  }
-}
