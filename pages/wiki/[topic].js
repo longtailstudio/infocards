@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import cheerio from 'cheerio'
 
-export const config = { amp: true }
+// export const config = { amp: true }
 
 export default function Home({infobox}) {
   return (
