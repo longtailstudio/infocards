@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import cheerio from 'cheerio'
 
+export const config = { amp: true }
+
 export default function Home({infobox}) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
