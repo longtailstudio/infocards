@@ -215,12 +215,14 @@ tr + tr > .navbox-abovebelow, tr + tr > .navbox-group, tr + tr > .navbox-image, 
     background-color: #f8f9fa;
     color: black;
     margin: 0.5em 0 0.5em 1em;
-    padding: 0.2em;
+    padding: 0.5em;
     float: right;
     clear: right;
     font-size: 88%;
     line-height: 1.5em;
-    width:22em
+    width:22em;
+    @apply shadow-xl;
+
 }
 
 .infobox-subbox {
