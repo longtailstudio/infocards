@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import cheerio from 'cheerio'
+import Link from 'next/link'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 
 // export const config = { amp: true }
 
@@ -14,8 +16,17 @@ export default function Home({title, infobox, navbox}) {
       <main className="flex flex-col items-center justify-center flex-1 px-20 text-center">
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          
-          <table className="infobox" dangerouslySetInnerHTML={{__html: infobox}} />
+        
+          <table className="infobox">
+          { ReactHtmlParser(infobox, {
+              transform: (node, index) => {
+                if (node.type === 'tag' && node.name === 'a') {
+                  return <Link href={node.attribs.href}>{convertNodeToElement(node)}</Link>;
+                }
+              }
+            }) 
+          }
+          </table>
             
         </div>
 
@@ -50,7 +61,7 @@ export async function getStaticProps({params}) {
   const title = $('#firstHeading').text()
   const infobox = $('table.infobox').html()  //.replaceAll('href="/wiki/','href="/')
   const navbox = $('div.navbox').html()
-  console.log(title)
+  //console.log(navbox)
 
   return {
     props: {
@@ -58,7 +69,7 @@ export async function getStaticProps({params}) {
       infobox,
       navbox,
     },
-    revalidate: 86400
+    //revalidate: 60
   }
 }
 
